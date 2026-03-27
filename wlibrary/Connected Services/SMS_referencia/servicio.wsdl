@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://DSorrow.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://DSorrow.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://DSorrow.com/">
+      <s:element name="SMS_function">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="puerto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SMS_functionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="mandar_SMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="puerto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mandar_SMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mandar_SMSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RN_function">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lostokens" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="devicetokens" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RN_functionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RN_function2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lostokens" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="devicetokens" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RN_function2Response">
+        <s:complexType />
+      </s:element>
+      <s:element name="rn_ios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rn_iosResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="rn_ios2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rn_ios2Response">
+        <s:complexType />
+      </s:element>
+      <s:element name="rn_android">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rn_androidResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="rn_android2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rn_android2Response">
+        <s:complexType />
+      </s:element>
+      <s:element name="rnotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rnotificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="androidnotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="androidnotificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="endpuntos">
+        <s:complexType />
+      </s:element>
+      <s:element name="endpuntosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="endpuntosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rs_prospecto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id_lead" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rs_prospectoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rs_prospectoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="whatsapp_msg">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phone_from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phone_to" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="texto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="imagenurl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="whatsapp_msgResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="rsalert_notifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="androidtokens" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iostokens" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="rsalert_notificationsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="send_android_token">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id_lead" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_android_tokenResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="send_ios_token">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokendevice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="send_ios_tokenResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="insert_prospecto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idquest" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="marca" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agencia" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="telefono" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="vendedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fuente" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hora" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="acuenta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="modelo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clavevend" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailvend" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="insert_prospectoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="info_endpoints">
+        <s:complexType />
+      </s:element>
+      <s:element name="info_endpointsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="info_endpointsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="test_conexion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cadena_de_conexion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="test_conexionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="test_conexionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SMS_functionSoapIn">
+    <wsdl:part name="parameters" element="tns:SMS_function" />
+  </wsdl:message>
+  <wsdl:message name="SMS_functionSoapOut">
+    <wsdl:part name="parameters" element="tns:SMS_functionResponse" />
+  </wsdl:message>
+  <wsdl:message name="mandar_SMSSoapIn">
+    <wsdl:part name="parameters" element="tns:mandar_SMS" />
+  </wsdl:message>
+  <wsdl:message name="mandar_SMSSoapOut">
+    <wsdl:part name="parameters" element="tns:mandar_SMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="RN_functionSoapIn">
+    <wsdl:part name="parameters" element="tns:RN_function" />
+  </wsdl:message>
+  <wsdl:message name="RN_functionSoapOut">
+    <wsdl:part name="parameters" element="tns:RN_functionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RN_function2SoapIn">
+    <wsdl:part name="parameters" element="tns:RN_function2" />
+  </wsdl:message>
+  <wsdl:message name="RN_function2SoapOut">
+    <wsdl:part name="parameters" element="tns:RN_function2Response" />
+  </wsdl:message>
+  <wsdl:message name="rn_iosSoapIn">
+    <wsdl:part name="parameters" element="tns:rn_ios" />
+  </wsdl:message>
+  <wsdl:message name="rn_iosSoapOut">
+    <wsdl:part name="parameters" element="tns:rn_iosResponse" />
+  </wsdl:message>
+  <wsdl:message name="rn_ios2SoapIn">
+    <wsdl:part name="parameters" element="tns:rn_ios2" />
+  </wsdl:message>
+  <wsdl:message name="rn_ios2SoapOut">
+    <wsdl:part name="parameters" element="tns:rn_ios2Response" />
+  </wsdl:message>
+  <wsdl:message name="rn_androidSoapIn">
+    <wsdl:part name="parameters" element="tns:rn_android" />
+  </wsdl:message>
+  <wsdl:message name="rn_androidSoapOut">
+    <wsdl:part name="parameters" element="tns:rn_androidResponse" />
+  </wsdl:message>
+  <wsdl:message name="rn_android2SoapIn">
+    <wsdl:part name="parameters" element="tns:rn_android2" />
+  </wsdl:message>
+  <wsdl:message name="rn_android2SoapOut">
+    <wsdl:part name="parameters" element="tns:rn_android2Response" />
+  </wsdl:message>
+  <wsdl:message name="rnotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:rnotification" />
+  </wsdl:message>
+  <wsdl:message name="rnotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:rnotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="androidnotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:androidnotification" />
+  </wsdl:message>
+  <wsdl:message name="androidnotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:androidnotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="endpuntosSoapIn">
+    <wsdl:part name="parameters" element="tns:endpuntos" />
+  </wsdl:message>
+  <wsdl:message name="endpuntosSoapOut">
+    <wsdl:part name="parameters" element="tns:endpuntosResponse" />
+  </wsdl:message>
+  <wsdl:message name="rs_prospectoSoapIn">
+    <wsdl:part name="parameters" element="tns:rs_prospecto" />
+  </wsdl:message>
+  <wsdl:message name="rs_prospectoSoapOut">
+    <wsdl:part name="parameters" element="tns:rs_prospectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="whatsapp_msgSoapIn">
+    <wsdl:part name="parameters" element="tns:whatsapp_msg" />
+  </wsdl:message>
+  <wsdl:message name="whatsapp_msgSoapOut">
+    <wsdl:part name="parameters" element="tns:whatsapp_msgResponse" />
+  </wsdl:message>
+  <wsdl:message name="rsalert_notificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:rsalert_notifications" />
+  </wsdl:message>
+  <wsdl:message name="rsalert_notificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:rsalert_notificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="send_android_tokenSoapIn">
+    <wsdl:part name="parameters" element="tns:send_android_token" />
+  </wsdl:message>
+  <wsdl:message name="send_android_tokenSoapOut">
+    <wsdl:part name="parameters" element="tns:send_android_tokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="send_ios_tokenSoapIn">
+    <wsdl:part name="parameters" element="tns:send_ios_token" />
+  </wsdl:message>
+  <wsdl:message name="send_ios_tokenSoapOut">
+    <wsdl:part name="parameters" element="tns:send_ios_tokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="insert_prospectoSoapIn">
+    <wsdl:part name="parameters" element="tns:insert_prospecto" />
+  </wsdl:message>
+  <wsdl:message name="insert_prospectoSoapOut">
+    <wsdl:part name="parameters" element="tns:insert_prospectoResponse" />
+  </wsdl:message>
+  <wsdl:message name="info_endpointsSoapIn">
+    <wsdl:part name="parameters" element="tns:info_endpoints" />
+  </wsdl:message>
+  <wsdl:message name="info_endpointsSoapOut">
+    <wsdl:part name="parameters" element="tns:info_endpointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="test_conexionSoapIn">
+    <wsdl:part name="parameters" element="tns:test_conexion" />
+  </wsdl:message>
+  <wsdl:message name="test_conexionSoapOut">
+    <wsdl:part name="parameters" element="tns:test_conexionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="servicioSoap">
+    <wsdl:operation name="SMS_function">
+      <wsdl:input message="tns:SMS_functionSoapIn" />
+      <wsdl:output message="tns:SMS_functionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="mandar_SMS">
+      <wsdl:input message="tns:mandar_SMSSoapIn" />
+      <wsdl:output message="tns:mandar_SMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RN_function">
+      <wsdl:input message="tns:RN_functionSoapIn" />
+      <wsdl:output message="tns:RN_functionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RN_function2">
+      <wsdl:input message="tns:RN_function2SoapIn" />
+      <wsdl:output message="tns:RN_function2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rn_ios">
+      <wsdl:input message="tns:rn_iosSoapIn" />
+      <wsdl:output message="tns:rn_iosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rn_ios2">
+      <wsdl:input message="tns:rn_ios2SoapIn" />
+      <wsdl:output message="tns:rn_ios2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rn_android">
+      <wsdl:input message="tns:rn_androidSoapIn" />
+      <wsdl:output message="tns:rn_androidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rn_android2">
+      <wsdl:input message="tns:rn_android2SoapIn" />
+      <wsdl:output message="tns:rn_android2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rnotification">
+      <wsdl:input message="tns:rnotificationSoapIn" />
+      <wsdl:output message="tns:rnotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="androidnotification">
+      <wsdl:input message="tns:androidnotificationSoapIn" />
+      <wsdl:output message="tns:androidnotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="endpuntos">
+      <wsdl:input message="tns:endpuntosSoapIn" />
+      <wsdl:output message="tns:endpuntosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rs_prospecto">
+      <wsdl:input message="tns:rs_prospectoSoapIn" />
+      <wsdl:output message="tns:rs_prospectoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="whatsapp_msg">
+      <wsdl:input message="tns:whatsapp_msgSoapIn" />
+      <wsdl:output message="tns:whatsapp_msgSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="rsalert_notifications">
+      <wsdl:input message="tns:rsalert_notificationsSoapIn" />
+      <wsdl:output message="tns:rsalert_notificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="send_android_token">
+      <wsdl:input message="tns:send_android_tokenSoapIn" />
+      <wsdl:output message="tns:send_android_tokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="send_ios_token">
+      <wsdl:input message="tns:send_ios_tokenSoapIn" />
+      <wsdl:output message="tns:send_ios_tokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="insert_prospecto">
+      <wsdl:input message="tns:insert_prospectoSoapIn" />
+      <wsdl:output message="tns:insert_prospectoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="info_endpoints">
+      <wsdl:input message="tns:info_endpointsSoapIn" />
+      <wsdl:output message="tns:info_endpointsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="test_conexion">
+      <wsdl:input message="tns:test_conexionSoapIn" />
+      <wsdl:output message="tns:test_conexionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="servicioSoap" type="tns:servicioSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SMS_function">
+      <soap:operation soapAction="http://DSorrow.com/SMS_function" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mandar_SMS">
+      <soap:operation soapAction="http://DSorrow.com/mandar_SMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RN_function">
+      <soap:operation soapAction="http://DSorrow.com/RN_function" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RN_function2">
+      <soap:operation soapAction="http://DSorrow.com/RN_function2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_ios">
+      <soap:operation soapAction="http://DSorrow.com/rn_ios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_ios2">
+      <soap:operation soapAction="http://DSorrow.com/rn_ios2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_android">
+      <soap:operation soapAction="http://DSorrow.com/rn_android" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_android2">
+      <soap:operation soapAction="http://DSorrow.com/rn_android2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rnotification">
+      <soap:operation soapAction="http://DSorrow.com/rnotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="androidnotification">
+      <soap:operation soapAction="http://DSorrow.com/androidnotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endpuntos">
+      <soap:operation soapAction="http://DSorrow.com/endpuntos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rs_prospecto">
+      <soap:operation soapAction="http://DSorrow.com/rs_prospecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="whatsapp_msg">
+      <soap:operation soapAction="http://DSorrow.com/whatsapp_msg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rsalert_notifications">
+      <soap:operation soapAction="http://DSorrow.com/rsalert_notifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_android_token">
+      <soap:operation soapAction="http://DSorrow.com/send_android_token" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_ios_token">
+      <soap:operation soapAction="http://DSorrow.com/send_ios_token" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insert_prospecto">
+      <soap:operation soapAction="http://DSorrow.com/insert_prospecto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="info_endpoints">
+      <soap:operation soapAction="http://DSorrow.com/info_endpoints" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="test_conexion">
+      <soap:operation soapAction="http://DSorrow.com/test_conexion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="servicioSoap12" type="tns:servicioSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SMS_function">
+      <soap12:operation soapAction="http://DSorrow.com/SMS_function" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mandar_SMS">
+      <soap12:operation soapAction="http://DSorrow.com/mandar_SMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RN_function">
+      <soap12:operation soapAction="http://DSorrow.com/RN_function" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RN_function2">
+      <soap12:operation soapAction="http://DSorrow.com/RN_function2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_ios">
+      <soap12:operation soapAction="http://DSorrow.com/rn_ios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_ios2">
+      <soap12:operation soapAction="http://DSorrow.com/rn_ios2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_android">
+      <soap12:operation soapAction="http://DSorrow.com/rn_android" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rn_android2">
+      <soap12:operation soapAction="http://DSorrow.com/rn_android2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rnotification">
+      <soap12:operation soapAction="http://DSorrow.com/rnotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="androidnotification">
+      <soap12:operation soapAction="http://DSorrow.com/androidnotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="endpuntos">
+      <soap12:operation soapAction="http://DSorrow.com/endpuntos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rs_prospecto">
+      <soap12:operation soapAction="http://DSorrow.com/rs_prospecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="whatsapp_msg">
+      <soap12:operation soapAction="http://DSorrow.com/whatsapp_msg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rsalert_notifications">
+      <soap12:operation soapAction="http://DSorrow.com/rsalert_notifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_android_token">
+      <soap12:operation soapAction="http://DSorrow.com/send_android_token" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="send_ios_token">
+      <soap12:operation soapAction="http://DSorrow.com/send_ios_token" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insert_prospecto">
+      <soap12:operation soapAction="http://DSorrow.com/insert_prospecto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="info_endpoints">
+      <soap12:operation soapAction="http://DSorrow.com/info_endpoints" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="test_conexion">
+      <soap12:operation soapAction="http://DSorrow.com/test_conexion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="servicio">
+    <wsdl:port name="servicioSoap" binding="tns:servicioSoap">
+      <soap:address location="http://192.168.11.123/servicio.asmx" />
+    </wsdl:port>
+    <wsdl:port name="servicioSoap12" binding="tns:servicioSoap12">
+      <soap12:address location="http://192.168.11.123/servicio.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
