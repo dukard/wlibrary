@@ -25,7 +25,7 @@ namespace wlibrary
     {
         public DataTable dt;
         public bool sistema_global;
-        public String error, cad_JSON, var_telefonos = "", var_sms = "", lacadena, lanissan, invords3 = "",mensaje="";
+        public String error, cad_JSON, var_telefonos = "", var_sms = "", lacadena, lanissan, invords3 = "",mensaje="",idquest,exacto="";
         public char prefijo;
 
         public bool login(String log, String pas)
@@ -399,7 +399,7 @@ namespace wlibrary
 
                 if (marca == "NISSAN")
                 {
-                    if ((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING")) latabla = "Tfuentes";
+                    if ((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING") || (agencia == "SANJE CROSSING")) latabla = "Tfuentes";
                     else latabla = "Tfuentesgolfo";
                 }
                 else latabla = "Tfuentes";
@@ -620,7 +620,7 @@ namespace wlibrary
 
                 if (marca == "NISSAN")
                 {
-                    if ((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING")) latabla = "Tfuentes";
+                    if ((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING") || (agencia == "SANJE CROSSING")) latabla = "Tfuentes";
                     else latabla = "Tfuentesgolfo";
                 }
                 else latabla = "Tfuentes";
@@ -633,13 +633,17 @@ namespace wlibrary
 
                     if ((marca == "KIA") && (agencia == "GONZALITOS"))
                     {
-                        copia = "arebolloso@carone.com.mx";
+                        copia = "atorresr@carone.com.mx";
                         copiagerente = "jiperez@carone.com.mx";
                     }
                     else if ((marca == "KIA") && (agencia == "SANTA CATARINA"))
                     {
-                        copia = "atorresr@carone.com.mx";
+                        copia = "arebolloso@carone.com.mx";
                         copiagerente = "jiperez@carone.com.mx";
+                    }
+                    else if ((marca == "KIA") && (agencia == "FLETEROS"))
+                    {
+                        copia = "jelopez@carone.com.mx";
                     }
                     else if ((marca == "CHIREY") && (agencia == "FLETEROS"))
                     {
@@ -663,7 +667,7 @@ namespace wlibrary
                         copia = "rsalazarg@carone.com.mx";
                     }
 
-                        emailsender obj3 = new emailsender();
+                    emailsender obj3 = new emailsender();
                     obj3.sender("alarma@carone.com.mx",copia, copiagerente, "caronesite@gmail.com", "Auto a Cuenta", mensaje, mensaje);
                 }
 
@@ -1056,6 +1060,213 @@ namespace wlibrary
             }
         }
 
+
+        public bool insert_prospectos_caronex(String marca, String agencia, String user, String nombre, String telefono, String email, String vendedor, String fuente, String fecha, String hora, String acuenta, String modelo, String clavevend, String emailvend, String id_lead,String origen_user,String origen_marca,String origen_agencia,String idcita)
+        {
+            wfunciones1 obj = new wfunciones1();
+            try
+            {
+                String latabla;
+
+                latabla = "Tfuentes";
+
+                if (obj.show_sql("select * from idquest_idx with (nolock) where idlead='" + id_lead + "'"))
+                {
+                    this.error = "Error23: QR ya registrado.";
+                    return false;
+                }
+
+                DateTime hoy = DateTime.Now;
+                fecha = hoy.ToString("dd/MM/yyyy");
+                hora = hoy.ToString("HH:mm");
+
+                if (acuenta == "Si")
+                {
+                    string copia = "", copiagerente = "";
+                    string mensaje = marca + "\n\n" + agencia + "\n\n" + user + "\n\n" + nombre + "\n\n" + telefono + "\n\n" + email + "\n\n" + vendedor + "\n\n" + fuente + "\n\n" + fecha + "\n\n" + hora + "\n\n" + acuenta + "\n\n" + modelo + "\n\n" + clavevend + "\n\n" + emailvend;
+
+                    if ((marca == "KIA") && (agencia == "GONZALITOS"))
+                    {
+                        copia = "atorresr@carone.com.mx";
+                        copiagerente = "jiperez@carone.com.mx";
+                    }
+                    else if ((marca == "KIA") && (agencia == "SANTA CATARINA"))
+                    {
+                        copia = "arebolloso@carone.com.mx";
+                        copiagerente = "jiperez@carone.com.mx";
+                    }
+                    else if ((marca == "KIA") && (agencia == "FLETEROS"))
+                    {
+                        copia = "jelopez@carone.com.mx";
+                    }
+                    else if ((marca == "CHIREY") && (agencia == "FLETEROS"))
+                    {
+                        copia = "erodriguezc@carone.com.mx";
+                    }
+                    else if ((marca == "GREAT WALL") && (agencia == "GONZALITOS"))
+                    {
+                        copia = "erodriguezc@carone.com.mx";
+                    }
+                    else if ((marca == "OMODA") && (agencia == "GONZALITOS"))
+                    {
+                        copia = "mlunac@carone.com.mx";
+                    }
+                    else if ((marca == "VOLKSWAGEN") && (agencia == "GONZALITOS"))
+                    {
+                        copia = "cgomez@carone.com.mx";
+                        copiagerente = "gperez@carone.com.mx";
+                    }
+                    else if ((marca == "GREAT WALL") && (agencia == "GONZALITOS"))
+                    {
+                        copia = "rsalazarg@carone.com.mx";
+                    }
+
+                    emailsender obj3 = new emailsender();
+                    obj3.sender("alarma@carone.com.mx", copia, copiagerente, "caronesite@gmail.com", "Auto a Cuenta", mensaje, mensaje);
+                }
+
+                //CODIGO PARA CUANDO HAY PROBLEMAS
+                if (obj.data("insert", "", "'" + marca + "','" + agencia + "','" + user + "','" + nombre + "','" + telefono + "','" + email + "','" + vendedor + "','" + fuente + "','" + fecha + "','" + hora + "','" + acuenta + "','" + modelo + "','" + clavevend + "','" + emailvend + "'", latabla, ""))
+                {
+                    if (obj.show_sql("select MAX(id) from " + latabla + " with (nolock)"))
+                    {
+                        idquest = obj.dt.Rows[0][0].ToString();
+
+                        if (obj.data("insert", "", "'" + origen_marca + "','" + origen_agencia + "','" + origen_user + "','" + id_lead + "','" + idcita + "','N" + idquest + "','" + idquest + "','','','','','',''", "idquest_idx", ""))
+                        {
+                            //
+                        }
+                        else
+                        {
+                            //
+                        }
+                    }
+
+                    if (obj.data("insert", "", "'" + marca + "','" + agencia + "','" + email + "','" + modelo + "','" + nombre + "','',''", "carta_check", ""))
+                    {
+                        //
+                    }
+
+                    cad_JSON = "Dato Archivado";
+                    return true;
+                }
+                else
+                {
+                    error = obj.error;
+                    return false;
+                }                                    
+            }
+            catch (Exception er)
+            {
+                this.error = "Error: " + er.ToString();
+                return false;
+            }
+        }
+
+
+
+        public bool getfacturascaronex(string fecha_inicio, string fecha_fin, string tipo_grafico, string dia_de_corte, string filtro_marca, string filtro_sucursal, string filtro_modelo, string filtro_agente, string filtro_t_unidad, string id1, string marca1, string id2, string marca2, string lugaragen, string id3, string marca3, string modelo, string vend_clave, string nombre, string email,int elcorte)
+        {
+            wfunciones1 obj = new wfunciones1();
+
+            try
+            {
+                string sql1 = "", pedazo1 = "", pedazo2 = "";
+                
+                pedazo1 = "select A.idquest2,convert(int,LEFT(A.fechafactura, 2)) as dia,RIGHT(A.fechafactura, 8) as mesanio,1 as valor,B.marca,B.agencia,B.modelo,B.vendedor,B.clavevend from idquest_idx A LEFT JOIN Tfuentes B ON A.idquest2=B.id where trim(A.fechafactura) != '' and CONVERT(SmallDateTime, A.fechafactura, 103) between CONVERT(SmallDateTime, '" + fecha_inicio + "', 103) and CONVERT(SmallDateTime, '" + fecha_fin + "', 103) and A.status = 'AC'";
+                pedazo2 = "select A.idquest2,convert(int,LEFT(A.fechacancelacion, 2)) as dia,RIGHT(A.fechacancelacion, 8) as mesanio, -1 as valor,B.marca,B.agencia,B.modelo,B.vendedor,B.clavevend from idquest_idx A LEFT JOIN Tfuentes B ON A.idquest2=B.id where trim(A.fechacancelacion) != '' and CONVERT(SmallDateTime, A.fechacancelacion, 103) between CONVERT(SmallDateTime, '" + fecha_inicio + "', 103) and CONVERT(SmallDateTime, '" + fecha_fin + "', 103) and A.status = 'CA'";
+
+                if (tipo_grafico == "Diario")
+                {
+                    pedazo1 += " and convert(int,LEFT(A.fechafactura, 2))<=" + elcorte;
+                    pedazo2 += " and convert(int,LEFT(A.fechacancelacion, 2))<=" + elcorte;
+                }
+
+                if ((filtro_marca != "") && (filtro_sucursal == ""))
+                {
+                    if (marca1 != "")
+                    {
+                        pedazo1 += " and B.marca='" + marca1 + "'";
+                        pedazo2 += " and B.marca='" + marca1 + "'";
+                    }
+                }
+                else if ((filtro_marca == "") && (filtro_sucursal != ""))
+                {
+                    if ((marca2 != "") && (lugaragen != ""))
+                    {
+                        pedazo1 += " and B.marca='" + marca2 + "' and B.agencia='" + lugaragen + "'";
+                        pedazo2 += " and B.marca='" + marca2 + "' and B.agencia='" + lugaragen + "'";
+                    }
+                }
+                else if ((filtro_marca != "") && (filtro_sucursal != ""))
+                {
+                    if ((marca2 != "") && (lugaragen != ""))
+                    {
+                        pedazo1 += " and B.marca='" + marca2 + "' and B.agencia='" + lugaragen + "'";
+                        pedazo2 += " and B.marca='" + marca2 + "' and B.agencia='" + lugaragen + "'";
+                    }
+                }
+
+                if (filtro_modelo != "")
+                {
+                    if (modelo != "")
+                    {
+                        pedazo1 += " and B.modelo='" + modelo + "'";
+                        pedazo2 += " and B.modelo='" + modelo + "'";
+                    }
+                }
+
+                if ((filtro_agente != "") && (vend_clave != "") && (int.Parse(vend_clave) > 0))
+                {
+                    pedazo1 += " and B.clavevend='" + vend_clave + "'";
+                    pedazo2 += " and B.clavevend='" + vend_clave + "'";
+                }
+                else if ((filtro_agente != "") && (nombre != ""))
+                {
+                    pedazo1 += " and B.vendedor='" + nombre + "'";
+                    pedazo2 += " and B.vendedor='" + nombre + "'";
+                }
+
+                sql1 = "WITH combinado AS ((" + pedazo1 + " union all " + pedazo2 + ")) select mesanio,sum(valor) as suma from combinado group by mesanio order by CONVERT(SmallDateTime, '01' + mesanio, 103)";
+
+                if (obj.show_sql(sql1))
+                {
+                    if (obj.dt.Rows.Count < 1)
+                    {
+                        error = "Sin Datos";
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return false;
+                    }
+                    else
+                    {
+                        dt = obj.dt.Copy();
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return true;
+                    }
+                }
+                else
+                {
+                    error = obj.error;
+                    obj.error = null;
+                    obj = null;
+                    return false;
+                }
+            }
+            catch (Exception er)
+            {
+                this.error = "Error: " + er.ToString();
+                return false;
+            }
+        }
+
+
+
+
+
         private bool buscamelo(string cadenasql)
         {
             wfunciones1 obj5 = new wfunciones1();
@@ -1094,7 +1305,7 @@ namespace wlibrary
 
             if (marca == "NISSAN")
             {
-                if ((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING")) latabla = "Tfuentes";
+                if ((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING") || (agencia == "SANJE CROSSING")) latabla = "Tfuentes";
                 else latabla = "Tfuentesgolfo";
             }
             else latabla = "Tfuentes";
@@ -1368,7 +1579,7 @@ namespace wlibrary
 
             if (marca == "NISSAN")
             {
-                if ((lugaragen == "SAN JERONIMO") || (lugaragen == "SAN JERONIMO LAREDO") || (lugaragen == "LAS AGUILAS") || (lugaragen == "TLALPAN") || (lugaragen == "TLALPAN LAREDO") || (lugaragen == "LA JOYA") || (lugaragen == "LA JOYA LAREDO") || (lugaragen == "LA JOYA CROSSING"))
+                if ((lugaragen == "SAN JERONIMO") || (lugaragen == "SAN JERONIMO LAREDO") || (lugaragen == "LAS AGUILAS") || (lugaragen == "TLALPAN") || (lugaragen == "TLALPAN LAREDO") || (lugaragen == "LA JOYA") || (lugaragen == "LA JOYA LAREDO") || (lugaragen == "LA JOYA CROSSING") || (lugaragen == "SANJE CROSSING"))
                 {
                     if (obj.conexion(quien, marca, lugaragen, data))
                     {
@@ -1570,7 +1781,7 @@ namespace wlibrary
                 else el_sql = "select * from Tencuestas where marca='" + marca + "' and agencia='" + agencia + "' and usuario='" + user + "' and tipoenc='" + tipoenc + "' and invord=" + invord + " and fecha='" + fecha + "' and hora='" + hora + "'";
                 *****/
 
-                if ((marca == "KIA") || (marca == "FORD") || (marca == "NISSAN") || (marca == "MG") || (marca == "CHIREY") || (marca == "JETOUR") || (marca == "OMODA")) el_sql = "select * from Tencuestas where marca='" + marca + "' and agencia='" + agencia + "' and tipoenc='" + tipoenc + "' and invord2='" + invord + "'";
+                if ((marca == "KIA") || (marca == "FORD") || (marca == "NISSAN") || (marca == "MG") || (marca == "CHIREY") || (marca == "JETOUR") || (marca == "OMODA") || (marca == "GEELY") || (marca == "CHANGAN") || (marca == "GREAT WALL")) el_sql = "select * from Tencuestas where marca='" + marca + "' and agencia='" + agencia + "' and tipoenc='" + tipoenc + "' and invord2='" + invord + "'";
                 else if ((marca == "CHRYSLER") || (marca == "FIAT") || (marca == "MITSUBISHI")) el_sql = "select * from Tencuestas where marca='" + marca + "' and agencia='" + agencia + "' and tipoenc='" + tipoenc + "' and invord2='" + invord + "'";
                 else if ((marca == "CHEVROLET") && (agencia == "TLALPAN")) el_sql = "select * from Tencuestas where marca='" + marca + "' and agencia='" + agencia + "' and tipoenc='" + tipoenc + "' and invord2='" + invord + "'";
                 else if ((marca == "CHEVROLET") && (agencia == "LAS BOMBAS")) el_sql = "select * from Tencuestas where marca='" + marca + "' and agencia='" + agencia + "' and tipoenc='" + tipoenc + "' and invord2='" + invord + "'";
@@ -1620,7 +1831,7 @@ namespace wlibrary
                         laencuesta = laencuesta.Substring(0, (laencuesta.Length - 1));
 
 
-                        if ((marca == "KIA") || (marca == "CHRYSLER") || (marca == "FIAT") || (marca == "MITSUBISHI") || (marca == "FORD") || (marca == "NISSAN") || (marca == "MG") || (marca == "CHIREY") || (marca == "JETOUR") || (marca == "OMODA")) el_sql = "'" + marca + "','" + agencia + "','" + user + "','" + tipoenc + "'," + 0 + "," + laencuesta + ",'" + fecha + "','" + hora + "','" + invord + "'";
+                        if ((marca == "KIA") || (marca == "CHRYSLER") || (marca == "FIAT") || (marca == "MITSUBISHI") || (marca == "FORD") || (marca == "NISSAN") || (marca == "MG") || (marca == "CHIREY") || (marca == "JETOUR") || (marca == "OMODA") || (marca == "GEELY") || (marca == "CHANGAN") || (marca == "GREAT WALL")) el_sql = "'" + marca + "','" + agencia + "','" + user + "','" + tipoenc + "'," + 0 + "," + laencuesta + ",'" + fecha + "','" + hora + "','" + invord + "'";
                         else if ((marca == "CHEVROLET") && (agencia == "TLALPAN")) el_sql = "'" + marca + "','" + agencia + "','" + user + "','" + tipoenc + "'," + 0 + "," + laencuesta + ",'" + fecha + "','" + hora + "','" + invord + "'";
                         else if ((marca == "CHEVROLET") && (agencia == "LAS BOMBAS")) el_sql = "'" + marca + "','" + agencia + "','" + user + "','" + tipoenc + "'," + 0 + "," + laencuesta + ",'" + fecha + "','" + hora + "','" + invord + "'";
                         else if ((marca == "CHEVROLET") && (agencia == "RUIZ CORTINES")) el_sql = "'" + marca + "','" + agencia + "','" + user + "','" + tipoenc + "'," + 0 + "," + laencuesta + ",'" + fecha + "','" + hora + "','" + invord + "'";
@@ -1966,7 +2177,7 @@ namespace wlibrary
                             {
                                 if (marca == "NISSAN")
                                 {
-                                    if (!((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING")))
+                                    if (!((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING") || (agencia == "SANJE CROSSING")))
                                     {
                                         cad_JSON = lanissan;
                                         cad_JSON = cad_JSON.Replace("\\", "").Replace("\"", "");
@@ -2067,6 +2278,9 @@ namespace wlibrary
                                         else if (marca == "CHIREY") sis_global = true;
                                         else if (marca == "JETOUR") sis_global = true;
                                         else if (marca == "OMODA") sis_global = true;
+                                        else if (marca == "GEELY") sis_global = true;
+                                        else if (marca == "GREAT WALL") sis_global = true;
+                                        else if (marca == "CHANGAN") sis_global = true;
                                         else if (marca == "MERCEDES BENZ") autoline = true;
                                         else if (marca == "KIA") sis_global = true;
                                         else if (marca == "NISSAN") sis_global = true;
@@ -2173,7 +2387,7 @@ namespace wlibrary
                             {
                                 if (marca == "NISSAN")
                                 {
-                                    if (!((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING")))
+                                    if (!((agencia == "SAN JERONIMO") || (agencia == "SAN JERONIMO LAREDO") || (agencia == "LAS AGUILAS") || (agencia == "TLALPAN") || (agencia == "TLALPAN LAREDO") || (agencia == "LA JOYA") || (agencia == "LA JOYA LAREDO") || (agencia == "LA JOYA CROSSING") || (agencia == "SANJE CROSSING")))
                                     {
                                         cad_JSON = lanissan;
                                         cad_JSON = cad_JSON.Replace("\\", "").Replace("\"", "");
@@ -2212,6 +2426,9 @@ namespace wlibrary
                                 else if (marca == "CHIREY") sis_global = true;
                                 else if (marca == "JETOUR") sis_global = true;
                                 else if (marca == "OMODA") sis_global = true;
+                                else if (marca == "GEELY") sis_global = true;
+                                else if (marca == "GREAT WALL") sis_global = true;
+                                else if (marca == "CHANGAN") sis_global = true;
                                 else if (marca == "MERCEDES BENZ") autoline = true;
                                 else if (marca == "KIA") sis_global = true;
                                 else if (marca == "NISSAN") sis_global = true;
@@ -2598,7 +2815,7 @@ namespace wlibrary
                             {
                                 if (marca == "NISSAN")
                                 {
-                                    if (((agencia != "SAN JERONIMO") && (agencia != "SAN JERONIMO LAREDO") && (agencia != "LAS AGUILAS") && (agencia != "TLALPAN") && (agencia != "TLALPAN LAREDO") && (agencia != "LA JOYA") && (agencia != "LA JOYA LAREDO") && (agencia != "LA JOYA CROSSING")))
+                                    if (((agencia != "SAN JERONIMO") && (agencia != "SAN JERONIMO LAREDO") && (agencia != "LAS AGUILAS") && (agencia != "TLALPAN") && (agencia != "TLALPAN LAREDO") && (agencia != "LA JOYA") && (agencia != "LA JOYA LAREDO") && (agencia != "LA JOYA CROSSING") && (agencia != "SANJE CROSSING")))
                                     {
                                         cad_JSON = lanissan;
                                         cad_JSON = cad_JSON.Replace("\\", "").Replace("\"", "");
@@ -2696,6 +2913,9 @@ namespace wlibrary
                                         else if (marca == "CHIREY") sis_global = true;
                                         else if (marca == "JETOUR") sis_global = true;
                                         else if (marca == "OMODA") sis_global = true;
+                                        else if (marca == "GEELY") sis_global = true;
+                                        else if (marca == "GREAT WALL") sis_global = true;
+                                        else if (marca == "CHANGAN") sis_global = true;
                                         else if (marca == "MERCEDES BENZ") autoline = true;
                                         else if (marca == "KIA") sis_global = true;
                                         else if (marca == "NISSAN") sis_global = true;
@@ -3239,7 +3459,7 @@ namespace wlibrary
                     {
                         if (marca == "NISSAN")
                         {
-                            if((agencia != "SAN JERONIMO") && (agencia != "SAN JERONIMO LAREDO") && (agencia != "LAS AGUILAS") && (agencia != "TLALPAN") && (agencia != "TLALPAN LAREDO") && (agencia != "LA JOYA") && (agencia != "LA JOYA LAREDO") && (agencia != "LA JOYA CROSSING"))
+                            if((agencia != "SAN JERONIMO") && (agencia != "SAN JERONIMO LAREDO") && (agencia != "LAS AGUILAS") && (agencia != "TLALPAN") && (agencia != "TLALPAN LAREDO") && (agencia != "LA JOYA") && (agencia != "LA JOYA LAREDO") && (agencia != "LA JOYA CROSSING") && (agencia != "SANJE CROSSING"))
                             {
                                 lacadena = obj.cadena;
                                 obj = null;
@@ -3305,6 +3525,114 @@ namespace wlibrary
             }
         }
 
+
+        public bool ged_vend_mod3(String marca, String agencia)
+        {
+            wfunciones1 obj = new wfunciones1();
+            try
+            {
+                if (marca == "MERCEDES BENZ")
+                {
+                    if (obj.show_sql("select * from mercedes_vend with (nolock) where agen='" + agencia + "'"))
+                    {
+                        if (obj.dt.Rows.Count < 1)
+                        {
+                            error = "Sin Datos";
+                            obj.dt.Dispose();
+                            obj.dt = null;
+                            obj = null;
+                            return false;
+                        }
+                        else
+                        {
+                            dt = obj.dt.Copy();
+                            obj.dt.Dispose();
+                            obj.dt = null;
+                            obj = null;
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        error = obj.error;
+                        obj.error = null;
+                        obj = null;
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (obj.conexion51(marca, agencia))
+                    {
+                        if (marca == "NISSAN")
+                        {
+                            if ((agencia != "SAN JERONIMO") && (agencia != "SAN JERONIMO LAREDO") && (agencia != "LAS AGUILAS") && (agencia != "TLALPAN") && (agencia != "TLALPAN LAREDO") && (agencia != "LA JOYA") && (agencia != "LA JOYA LAREDO") && (agencia != "LA JOYA CROSSING") && (agencia != "SANJE CROSSING"))
+                            {
+                                lacadena = obj.cadena;
+                                obj = null;
+                                return true;
+                            }
+                            else
+                            {
+                                /////////////////////////////////
+                                sistema_global = obj.sistema_global;
+                                if (obj.dt.Rows.Count < 1)
+                                {
+                                    error = "Vacio";
+                                    obj.dt.Dispose();
+                                    obj.dt = null;
+                                    obj = null;
+                                    return false;
+                                }
+                                else
+                                {
+                                    dt = obj.dt.Copy();
+                                    obj.dt.Dispose();
+                                    obj.dt = null;
+                                    obj = null;
+                                    return true;
+                                }////codigo repetido arreglar despues
+                            }
+                        }
+                        else
+                        {
+                            sistema_global = obj.sistema_global;
+                            if (obj.dt.Rows.Count < 1)
+                            {
+                                error = "Vacio";
+                                obj.dt.Dispose();
+                                obj.dt = null;
+                                obj = null;
+                                return false;
+                            }
+                            else
+                            {
+                                dt = obj.dt.Copy();
+                                obj.dt.Dispose();
+                                obj.dt = null;
+                                obj = null;
+                                return true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        error = obj.error;
+                        obj.error = null;
+                        obj = null;
+                        return false;
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+                error = er.ToString();
+                obj = null;
+                return false;
+            }
+        }
+
+
         public bool marcas_modelos(String marca)
         {
             wfunciones1 obj = new wfunciones1();
@@ -3327,6 +3655,92 @@ namespace wlibrary
                         obj.dt = null;
                         obj = null;
                         return true;
+                    }
+                }
+                else
+                {
+                    error = obj.error;
+                    obj.error = null;
+                    obj = null;
+                    return false;
+                }
+            }
+            catch (Exception er)
+            {
+                error = er.ToString();
+                obj = null;
+                return false;
+            }
+        }
+
+
+        public bool marcas_modelos2(String id_modelo_quest)
+        {
+            wfunciones1 obj = new wfunciones1();
+            try
+            {
+                if (obj.show_sql("select * from Tmodelos2 with (nolock) where id=" + id_modelo_quest))
+                {
+                    if (obj.dt.Rows.Count < 1)
+                    {
+                        error = "Sin Datos";
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return false;
+                    }
+                    else
+                    {
+                        dt = obj.dt.Copy();
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return true;
+                    }
+                }
+                else
+                {
+                    error = obj.error;
+                    obj.error = null;
+                    obj = null;
+                    return false;
+                }
+            }
+            catch (Exception er)
+            {
+                error = er.ToString();
+                obj = null;
+                return false;
+            }
+        }
+
+        public bool insert_marcas_modelos(String marca,String modelo)
+        {
+            wfunciones1 obj = new wfunciones1();
+
+            try
+            {
+                if (obj.show_sql("select * from Tmodelos2 with (nolock) where marca='" + marca + "' and modelo='" + modelo + "'"))
+                {
+                    if (obj.dt.Rows.Count < 1)
+                    {
+                        if (obj.data("insert", "", "'" + marca + "','" + modelo + "'", "Tmodelos2", ""))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            error = obj.error;
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        error = "Marca y Modelo Repetido.";
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return false;
                     }
                 }
                 else
@@ -4860,23 +5274,25 @@ namespace wlibrary
         {
             try
             {
-                MemoryStream ms = new MemoryStream(imagen);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-                /////Bitmap img2 = new Bitmap(img);
+                using (MemoryStream ms = new MemoryStream(imagen))
+                {
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                    /////Bitmap img2 = new Bitmap(img);
 
-                if (existe_archivo(nombrearchivo))
-                {//si existe
-                    File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrearchivo));
-                    img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrearchivo), System.Drawing.Imaging.ImageFormat.Jpeg);
-                }
-                else
-                {//no existe                    
-                    img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrearchivo));
-                }
+                    if (existe_archivo(nombrearchivo))
+                    {//si existe
+                        File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrearchivo));
+                        img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrearchivo), System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                    else
+                    {//no existe                    
+                        img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrearchivo));
+                    }
 
-                img.Dispose();
-                ms.Dispose();
-                return true;
+                    img.Dispose();
+                    ms.Dispose();
+                    return true;
+                }
             }
             catch (Exception er)
             {
@@ -4891,48 +5307,51 @@ namespace wlibrary
             try
             {
                 wfunciones1 obj = new wfunciones1();
-                MemoryStream ms = new MemoryStream(imagen);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-                /////Bitmap img2 = new Bitmap(img);
-                DateTime hoy = DateTime.Now;
 
-                if (existe_archivo(nombrefoto)) { /*si existe*/   File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto)); }
-                img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto), System.Drawing.Imaging.ImageFormat.Jpeg);
-
-                if (obj.data("insert", "", "'" + idvigilante + "','" + marc + "','" + agen + "','" + io + "','" + depto + "','" + repuve + "','" + placa + "','" + vin + "','" + foliofactura + "','" + nombrefoto + "','" + hoy.ToString("dd/MM/yyyy") + "','" + hoy.ToString("HH:mm") + "'", "Tioautos", ""))
+                using (MemoryStream ms = new MemoryStream(imagen))
                 {
-                    img.Dispose();
-                    ms.Dispose();
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                    /////Bitmap img2 = new Bitmap(img);
+                    DateTime hoy = DateTime.Now;
 
-                    if (obj.show_sql("select * from Tioautos where vin='" + vin + "' order by id desc"))
+                    if (existe_archivo(nombrefoto)) { /*si existe*/   File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto)); }
+                    img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto), System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                    if (obj.data("insert", "", "'" + idvigilante + "','" + marc + "','" + agen + "','" + io + "','" + depto + "','" + repuve + "','" + placa + "','" + vin + "','" + foliofactura + "','" + nombrefoto + "','" + hoy.ToString("dd/MM/yyyy") + "','" + hoy.ToString("HH:mm") + "'", "Tioautos", ""))
                     {
-                        if (obj.dt.Rows.Count < 1)
+                        img.Dispose();
+                        ms.Dispose();
+
+                        if (obj.show_sql("select * from Tioautos where vin='" + vin + "' order by id desc"))
                         {
-                            error = "Sin Datos";
-                            obj.dt.Dispose();
-                            return false;
+                            if (obj.dt.Rows.Count < 1)
+                            {
+                                error = "Sin Datos";
+                                obj.dt.Dispose();
+                                return false;
+                            }
+                            else
+                            {
+                                dt = obj.dt.Copy();
+                                obj.dt.Dispose();
+                                obj.dt = null;
+                                return true;
+                            }
                         }
                         else
                         {
-                            dt = obj.dt.Copy();
+                            error = obj.error;
                             obj.dt.Dispose();
-                            obj.dt = null;
-                            return true;
+                            return false;
                         }
                     }
                     else
                     {
-                        error = obj.error;
-                        obj.dt.Dispose();
+                        this.error = "Error1: " + obj.error;
+                        img.Dispose();
+                        ms.Dispose();
                         return false;
                     }
-                }
-                else
-                {
-                    this.error = "Error1: " + obj.error;
-                    img.Dispose();
-                    ms.Dispose();
-                    return false;
                 }
             }
             catch (Exception er)
@@ -4947,31 +5366,42 @@ namespace wlibrary
             try
             {
                 wfunciones1 obj = new wfunciones1();
-                MemoryStream ms = new MemoryStream(imagen);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-                /////Bitmap img2 = new Bitmap(img);
-                DateTime hoy = DateTime.Now;
+                exacto = "nada";
+                /////////////////////////////////////////////MemoryStream ms = new MemoryStream(imagen);
 
-                if (existe_archivo(nombrefoto)) { /*si existe*/   File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto)); }
-                img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto), System.Drawing.Imaging.ImageFormat.Jpeg);
+                using (MemoryStream ms = new MemoryStream(imagen))
+                {
+                    exacto = "valio madre";
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                    /////Bitmap img2 = new Bitmap(img);
+                    DateTime hoy = DateTime.Now;
 
-                if (obj.data("insert", "", "'" + idvigilante + "','" + marc + "','" + agen + "','" + io + "','" + depto + "','" + repuve + "','" + placa + "','" + vin + "','" + foliofactura + "','" + nombrefoto + "','" + hoy.ToString("dd/MM/yyyy") + "','" + hoy.ToString("HH:mm") + "'", "Tioautos", ""))
-                {
-                    img.Dispose();
-                    ms.Dispose();
-                    return true;
-                }
-                else
-                {
-                    this.error = "Error1: " + obj.error;
-                    img.Dispose();
-                    ms.Dispose();
-                    return false;
+                    exacto = "0";
+                    if (existe_archivo(nombrefoto)) { /*si existe*/   File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto)); }
+                    exacto = "1";
+                    img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto), System.Drawing.Imaging.ImageFormat.Jpeg);
+                    exacto = "2";
+                    
+                    if (obj.data("insert", "", "'" + idvigilante + "','" + marc + "','" + agen + "','" + io + "','" + depto + "','" + repuve + "','" + placa + "','" + vin + "','" + foliofactura + "','" + nombrefoto + "','" + hoy.ToString("dd/MM/yyyy") + "','" + hoy.ToString("HH:mm") + "'", "Tioautos", ""))
+                    {
+                        exacto = "3";
+                        img.Dispose();
+                        ms.Dispose();
+                        return true;
+                    }
+                    else
+                    {
+                        exacto = "4";
+                        this.error = "Error1: " + obj.error;
+                        img.Dispose();
+                        ms.Dispose();
+                        return false;
+                    }
                 }
             }
             catch (Exception er)
             {
-                this.error = "Error3: " + er.ToString();
+                this.error = "Error3: " + exacto + " " + er.ToString();
                 return false;
             }
         }
@@ -4981,27 +5411,30 @@ namespace wlibrary
             try
             {
                 wfunciones1 obj = new wfunciones1();
-                MemoryStream ms = new MemoryStream(imagen);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-                /////Bitmap img2 = new Bitmap(img);
-                DateTime hoy = DateTime.Now;
 
-                if (existe_archivo(nombrefoto)) { /*si existe*/   File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto)); }
-                img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto), System.Drawing.Imaging.ImageFormat.Jpeg);
+                using (MemoryStream ms = new MemoryStream(imagen))
+                {
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                    /////Bitmap img2 = new Bitmap(img);
+                    DateTime hoy = DateTime.Now;
 
-                if (obj.data("insert", "", "'" + iduser + "','" + Marca + "','" + Agencia + "','" + registroNFC + "','" + prioridad + "','" + nombrefoto + "','" + reporte + "','" + fecha + "','" + hora + "','" + hoy.ToString("dd/MM/yyyy") + "','" + hoy.ToString("HH:mm") + "'", "Treporterondin", ""))
-                {
-                    img.Dispose();
-                    ms.Dispose();
-                    if (prioridad == "red") sendcorreo(Marca,Agencia,registroNFC,iduser,prioridad,nombrefoto,reporte,hoy.ToString("dd/MM/yyyy"),hoy.ToString("HH:mm"));
-                    return true;
-                }
-                else
-                {
-                    this.error = "Error11: " + obj.error;
-                    img.Dispose();
-                    ms.Dispose();
-                    return false;
+                    if (existe_archivo(nombrefoto)) { /*si existe*/   File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto)); }
+                    img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto), System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                    if (obj.data("insert", "", "'" + iduser + "','" + Marca + "','" + Agencia + "','" + registroNFC + "','" + prioridad + "','" + nombrefoto + "','" + reporte + "','" + fecha + "','" + hora + "','" + hoy.ToString("dd/MM/yyyy") + "','" + hoy.ToString("HH:mm") + "'", "Treporterondin", ""))
+                    {
+                        img.Dispose();
+                        ms.Dispose();
+                        if (prioridad == "red") sendcorreo(Marca, Agencia, registroNFC, iduser, prioridad, nombrefoto, reporte, hoy.ToString("dd/MM/yyyy"), hoy.ToString("HH:mm"));
+                        return true;
+                    }
+                    else
+                    {
+                        this.error = "Error11: " + obj.error;
+                        img.Dispose();
+                        ms.Dispose();
+                        return false;
+                    }
                 }
             }
             catch (Exception er)
@@ -5010,6 +5443,46 @@ namespace wlibrary
                 return false;
             }
         }
+
+
+        public bool archivar_reporte_visitas(string iduser, string Marca, string Agencia, string nombrefoto, string reporte, string fecha, string hora, byte[] imagen)
+        {
+            try
+            {
+                wfunciones1 obj = new wfunciones1();
+
+                using (MemoryStream ms = new MemoryStream(imagen))
+                {
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                    /////Bitmap img2 = new Bitmap(img);
+                    DateTime hoy = DateTime.Now;
+
+                    if (existe_archivo(nombrefoto)) { /*si existe*/   File.Delete(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto)); }
+                    img.Save(System.Web.HttpContext.Current.Server.MapPath("~/ceo/" + nombrefoto), System.Drawing.Imaging.ImageFormat.Jpeg);
+
+                    if (obj.data("insert", "", "'" + iduser + "','" + Marca + "','" + Agencia + "','" + nombrefoto + "','" + reporte + "','" + fecha + "','" + hora + "','" + hoy.ToString("dd/MM/yyyy") + "','" + hoy.ToString("HH:mm") + "'", "Treportevisitas", ""))
+                    {
+                        img.Dispose();
+                        ms.Dispose();
+                        /////////////if (prioridad == "red") sendcorreo(Marca, Agencia, registroNFC, iduser, prioridad, nombrefoto, reporte, hoy.ToString("dd/MM/yyyy"), hoy.ToString("HH:mm"));
+                        return true;
+                    }
+                    else
+                    {
+                        this.error = "Error11: " + obj.error;
+                        img.Dispose();
+                        ms.Dispose();
+                        return false;
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+                this.error = "Error33: " + er.ToString();
+                return false;
+            }
+        }
+
 
         private bool existe_archivo(String cad)
         {
@@ -6814,7 +7287,7 @@ namespace wlibrary
                     {
                         if (obj.dt.Rows[0][1].ToString() == "NISSAN")
                         {
-                            if ((obj.dt.Rows[0][2].ToString() == "SAN JERONIMO") || (obj.dt.Rows[0][2].ToString() == "SAN JERONIMO LAREDO") || (obj.dt.Rows[0][2].ToString() == "LAS AGUILAS") || (obj.dt.Rows[0][2].ToString() == "TLALPAN") || (obj.dt.Rows[0][2].ToString() == "TLALPAN LAREDO") || (obj.dt.Rows[0][2].ToString() == "LA JOYA") || (obj.dt.Rows[0][2].ToString() == "LA JOYA LAREDO") || (obj.dt.Rows[0][2].ToString() == "LA JOYA CROSSING")) latabla = "Tfuentes";
+                            if ((obj.dt.Rows[0][2].ToString() == "SAN JERONIMO") || (obj.dt.Rows[0][2].ToString() == "SAN JERONIMO LAREDO") || (obj.dt.Rows[0][2].ToString() == "LAS AGUILAS") || (obj.dt.Rows[0][2].ToString() == "TLALPAN") || (obj.dt.Rows[0][2].ToString() == "TLALPAN LAREDO") || (obj.dt.Rows[0][2].ToString() == "LA JOYA") || (obj.dt.Rows[0][2].ToString() == "LA JOYA LAREDO") || (obj.dt.Rows[0][2].ToString() == "LA JOYA CROSSING") || (obj.dt.Rows[0][2].ToString() == "SANJE CROSSING")) latabla = "Tfuentes";
                             else latabla = "Tfuentesgolfo";
                         }
                         else latabla = "Tfuentes";
@@ -6932,7 +7405,294 @@ namespace wlibrary
             return false;
         }
 
+        public Boolean cambiarformatofechajuntas()
+        {
+            wfunciones1 obj = new wfunciones1();
+            int i;
+            DataTable aux5;
+            string fechainicio, fechacompromiso;
+            cad_JSON = "";
 
+            String sql = "select id,fechainicio,fechacompromiso from lasjuntas where LEN(fechainicio)<10 OR LEN(fechacompromiso)<10 order by id";
+            if (get_dato(sql))
+            {
+                aux5 = dt.Copy();
+                dt.Dispose();
+
+                for (i = 0; i < aux5.Rows.Count; i++)
+                {                    
+                    cad_JSON+=aux5.Rows[i][1] + " - " + aux5.Rows[i][2] + "<br/>";
+                    fechainicio = aux5.Rows[i][1].ToString().Trim();
+                    fechacompromiso = aux5.Rows[i][2].ToString().Trim();
+                    if (fechainicio.Length < 10) fechainicio = adecuar_fecha_junta(fechainicio);
+                    if (fechacompromiso.Length < 10) fechacompromiso = adecuar_fecha_junta(fechacompromiso);
+                    cad_JSON += fechainicio + " - " + fechacompromiso + "<br/><br/>";
+
+                    if (obj.mod_sql("update lasjuntas set fechainicio='" + fechainicio + "',fechacompromiso='" + fechacompromiso + "' where id=" + aux5.Rows[i][0]))
+                    {
+                        //
+                    }
+                    else
+                    {
+                        error = cad_JSON + obj.error;
+                        return false;
+                    }
+                }    //  end for aux5
+
+                return true;
+
+            }
+
+            error = cad_JSON + obj.error;
+            return false;
+        }
+
+        public Boolean cambiarfechacompromiso()
+        {
+            wfunciones1 obj = new wfunciones1();
+            int i;
+            DataTable aux5;
+            string fechainicio, fechacompromiso;
+            cad_JSON = "";
+
+            String sql = "select id,fechacompromiso from lasjuntas order by id";
+            if (get_dato(sql))
+            {
+                aux5 = dt.Copy();
+                dt.Dispose();
+
+                for (i = 0; i < aux5.Rows.Count; i++)
+                {
+                    cad_JSON += aux5.Rows[i][0] + " - " + aux5.Rows[i][1] + "<br/>\n";
+                    cad_JSON += conviertelo(aux5.Rows[i][0].ToString()) + "<br/><br/>\n\n";
+
+                    /*if (obj.mod_sql("update lasjuntas set fechainicio='" + fechainicio + "',fechacompromiso='" + fechacompromiso + "' where id=" + aux5.Rows[i][0]))
+                    {
+                        //
+                    }
+                    else
+                    {
+                        error = cad_JSON + obj.error;
+                        return false;
+                    }*/
+                }    //  end for aux5
+
+                return true;
+
+            }
+
+            error = cad_JSON + obj.error;
+            return false;
+        }
+
+        public Boolean cambiarfechacompromiso2()
+        {
+            wfunciones1 obj = new wfunciones1();
+            int i;
+            DataTable aux5;
+            string fechainicio, fechacompromiso;
+            cad_JSON = "";
+
+            String sql = "WITH combinado AS ((select id,fechacompromiso,SUBSTRING(fechacompromiso, 1, 2) as dia,SUBSTRING(fechacompromiso, 4, 2) as mes from lasjuntas)) select id,fechacompromiso,dia,mes from combinado where  CAST(mes AS INT)>12 order by id";
+            if (get_dato(sql))
+            {
+                aux5 = dt.Copy();
+                dt.Dispose();
+
+                for (i = 0; i < aux5.Rows.Count; i++)
+                {
+                    cad_JSON += aux5.Rows[i][0] + " - " + aux5.Rows[i][1] + " - " + aux5.Rows[i][2] + " - " + aux5.Rows[i][3] + "<br/>\n";
+                    
+                    /*if (obj.mod_sql("update lasjuntas set fechainicio='" + fechainicio + "',fechacompromiso='" + fechacompromiso + "' where id=" + aux5.Rows[i][0]))
+                    {
+                        //
+                    }
+                    else
+                    {
+                        error = cad_JSON + obj.error;
+                        return false;
+                    }*/
+                }    //  end for aux5
+
+                return true;
+
+            }
+
+            error = cad_JSON + obj.error;
+            return false;
+        }
+
+        string adecuar_fecha_junta(string fecha)
+        {
+            string[] pedazos = fecha.Split('/');
+            if (pedazos[0].Length < 2) pedazos[0] = "0" + pedazos[0];
+            if (pedazos[1].Length < 2) pedazos[1] = "0" + pedazos[1];
+            return pedazos[0] + "/" + pedazos[1] + "/" + pedazos[2];
+        }
+
+        string conviertelo(string id)
+        {
+            if (get_dato("select CONVERT(SmallDateTime,fechacompromiso, 103) from lasjuntas where id=" + id))
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return error;
+            }
+        }
+
+
+        public bool get_agencias_caronex()
+        {
+            wfunciones1 obj = new wfunciones1();
+            try
+            {
+                if (obj.show_sql("select * from agencias_caronex order by marca,lugaragen"))
+                {
+                    if (obj.dt.Rows.Count < 1)
+                    {
+                        error = "Sin Datos";
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return false;
+                    }
+                    else
+                    {
+                        dt = obj.dt.Copy();
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return true;
+                    }
+                }
+                else
+                {
+                    error = obj.error;
+                    obj.dt.Dispose();
+                    obj.error = null;
+                    obj = null;
+                    return false;
+                }
+            }
+            catch (Exception er)
+            {
+                error = er.ToString();
+                obj = null;
+                return false;
+            }
+        }
+
+        public bool get_agencias_caronex2(String id_sucursal_quest)
+        {
+            wfunciones1 obj = new wfunciones1();
+            try
+            {
+                if (obj.show_sql("select * from agencias_caronex where id=" + id_sucursal_quest))
+                {
+                    if (obj.dt.Rows.Count < 1)
+                    {
+                        error = "Sin Datos";
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return false;
+                    }
+                    else
+                    {
+                        dt = obj.dt.Copy();
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return true;
+                    }
+                }
+                else
+                {
+                    error = obj.error;
+                    obj.dt.Dispose();
+                    obj.error = null;
+                    obj = null;
+                    return false;
+                }
+            }
+            catch (Exception er)
+            {
+                error = er.ToString();
+                obj = null;
+                return false;
+            }
+        }
+
+
+        public bool get_values_ids(String idsucursalquest, String idmodeloquest)
+        {
+            wfunciones1 obj = new wfunciones1();
+            try
+            {
+                lacadena = "";
+
+                if (obj.show_sql("select * from agencias_caronex where id=" + idsucursalquest))
+                {
+                    if (obj.dt.Rows.Count < 1)
+                    {
+                        error = "id de la agencia no existe en el catalogo";
+                        obj.dt.Dispose();
+                        obj.dt = null;
+                        obj = null;
+                        return false;
+                    }
+                    else
+                    {
+                        lacadena += obj.dt.Rows[0][1] + "|" + obj.dt.Rows[0][2];
+                        obj.dt.Dispose();
+
+                        if (obj.show_sql("select * from Tmodelos2 with (nolock) where id = '" + idmodeloquest + "'"))
+                        {
+                            if (obj.dt.Rows.Count < 1)
+                            {
+                                error = "id del modelo no existe en el catalogo";
+                                obj.dt.Dispose();
+                                obj.dt = null;
+                                obj = null;
+                                return false;
+                            }
+                            else
+                            {
+                                lacadena += "|" + obj.dt.Rows[0][2];
+                                obj.dt.Dispose();
+                                obj.dt = null;
+                                obj = null;
+                                return true;
+                            }
+                        }
+                        else
+                        {
+                            error = obj.error;
+                            obj.dt.Dispose();
+                            obj.error = null;
+                            obj = null;
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    error = obj.error;
+                    obj.dt.Dispose();
+                    obj.error = null;
+                    obj = null;
+                    return false;
+                }
+            }
+            catch (Exception er)
+            {
+                error = er.ToString();
+                obj = null;
+                return false;
+            }
+        }
 
 
 
